@@ -11,6 +11,8 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.rashwan.jokeGenerator.JokeGenerator;
 
+import java.io.IOException;
+
 /**
  * An endpoint class we are exposing
  */
@@ -29,7 +31,11 @@ public class MyEndpoint {
     public MyBean getJoke(){
         MyBean response = new MyBean();
         JokeGenerator jokeGenerator = new JokeGenerator();
-        response.setData(jokeGenerator.getJoke());
+        try {
+            response.setData(jokeGenerator.getJoke());
+        } catch (IOException e) {
+            response.setData("Couldn't connect to Jokes server :(");
+        }
         return response;
     }
 }

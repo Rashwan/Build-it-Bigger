@@ -11,6 +11,9 @@ import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.rashwan.jokedisplay.JokeDisplayActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 /**
@@ -46,7 +49,16 @@ public class EndPointsAsyncTask extends AsyncTask<Context,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        Intent intent = JokeDisplayActivity.getDisplayIntent(context,result);
+        String joke = result;
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+            if (jsonObject.has("joke")){
+                joke = jsonObject.getString("joke");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Intent intent = JokeDisplayActivity.getDisplayIntent(context,joke);
         context.startActivity(intent);
     }
 }

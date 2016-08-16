@@ -21,7 +21,7 @@ import static junit.framework.Assert.assertFalse;
 public class EndPointsAsyncTaskInstTest {
 
     @Test
-    public void GCEAsyncTask() throws Exception {
+    public void ShouldReturnJokeOnGCEAsyncTask() throws Exception {
         EndPointsAsyncTask task = new EndPointsAsyncTask(){
             @Override
             protected void onPostExecute(String result) {

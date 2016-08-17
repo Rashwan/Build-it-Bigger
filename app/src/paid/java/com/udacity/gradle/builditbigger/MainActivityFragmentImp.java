@@ -1,9 +1,8 @@
 package com.udacity.gradle.builditbigger;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.view.View;
-import android.view.ViewGroup;
 
 /**
  * Created by rashwan on 8/16/16.
@@ -14,8 +13,18 @@ public class MainActivityFragmentImp extends MainActivityFragment{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main,container,false);
+    public void populateScreen(View root) {
+        setEndPointsAsyncTask(buildGCETask());
     }
+    @NonNull
+    private EndPointsAsyncTask buildGCETask() {
+        return new EndPointsAsyncTask(){
+            @Override
+            public void prepareJokeDisplay(Intent jokeDisplayIntent) {
+                getActivity().startActivity(jokeDisplayIntent);
+            }
+        };
+    }
+
 
 }

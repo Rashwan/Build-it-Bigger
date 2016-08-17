@@ -20,7 +20,7 @@ import java.io.IOException;
  * Created by rashwan on 8/15/16.
  */
 
-public class EndPointsAsyncTask extends AsyncTask<Context,Void,String> {
+public abstract class  EndPointsAsyncTask extends AsyncTask<Context,Void,String> {
     private static MyApi myApiService = null;
     private Context context;
 
@@ -59,6 +59,8 @@ public class EndPointsAsyncTask extends AsyncTask<Context,Void,String> {
             e.printStackTrace();
         }
         Intent intent = JokeDisplayActivity.getDisplayIntent(context,joke);
-        context.startActivity(intent);
+
+        prepareJokeDisplay(intent);
     }
+    public abstract void prepareJokeDisplay(Intent jokeDisplayIntent);
 }

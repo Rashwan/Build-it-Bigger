@@ -3,6 +3,7 @@ package com.udacity.gradle.builditbigger;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -14,8 +15,9 @@ import com.google.android.gms.ads.InterstitialAd;
  */
 
 public class MainActivityFragmentImp extends MainActivityFragment {
-    InterstitialAd interstitialAd;
-    Intent intent;
+    private InterstitialAd interstitialAd;
+    private Intent intent;
+    private ProgressBar pbTellJoke;
 
     public MainActivityFragmentImp() {
     }
@@ -23,6 +25,8 @@ public class MainActivityFragmentImp extends MainActivityFragment {
 
     @Override
     public void populateScreen(View root) {
+
+        pbTellJoke = (ProgressBar) root.findViewById(R.id.progress_bar_tell_joke);
 
         setEndPointsAsyncTask(buildGCETask());
 
@@ -38,6 +42,7 @@ public class MainActivityFragmentImp extends MainActivityFragment {
         return new EndPointsAsyncTask(){
             @Override
             public void prepareJokeDisplay(Intent jokeDisplayIntent) {
+                pbTellJoke.setVisibility(View.GONE);
                 intent = jokeDisplayIntent;
                 if (interstitialAd.isLoaded()){
                     interstitialAd.show();

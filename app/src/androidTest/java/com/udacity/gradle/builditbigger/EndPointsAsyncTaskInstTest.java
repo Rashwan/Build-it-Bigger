@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.SmallTest;
 import android.support.test.runner.AndroidJUnit4;
@@ -25,6 +26,11 @@ public class EndPointsAsyncTaskInstTest {
         EndPointsAsyncTask task = new EndPointsAsyncTask(){
             @Override
             protected void onPostExecute(String result) {
+                //Just to override the the original implementation
+            }
+
+            @Override
+            public void prepareJokeDisplay(Intent jokeDisplayIntent) {
                 //Just to override the the original implementation
             }
         };

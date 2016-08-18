@@ -53,3 +53,10 @@ dependencies {
     freeCompile 'com.google.android.gms:play-services-ads-lite:9.4.0'
 
 }
+task TestWithGAE (dependsOn: [':app:connectedCheck',':jokeBackend:appengineRun',':jokeBackend:appengineStop']){
+    Task connectedTest = tasks.getByPath(":app:connectedCheck")
+    Task GAEStop = tasks.getByPath(":jokeBackend:appengineStop")
+    connectedTest.mustRunAfter(":jokeBackend:appengineRun")
+    GAEStop.mustRunAfter(connectedTest)
+}
+

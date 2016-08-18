@@ -31,7 +31,7 @@ public class EndPointsAsyncTaskInstTest {
 
             @Override
             public void prepareJokeDisplay(Intent jokeDisplayIntent) {
-                //Just to override the the original implementation
+                //Empty implementation
             }
         };
         String response = task.execute(InstrumentationRegistry.getTargetContext())

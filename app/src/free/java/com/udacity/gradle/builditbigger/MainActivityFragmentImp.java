@@ -66,7 +66,7 @@ public class MainActivityFragmentImp extends MainActivityFragment {
 
     private void buildInterstitialAd() {
         interstitialAd = new InterstitialAd(getActivity());
-        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
         interstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {

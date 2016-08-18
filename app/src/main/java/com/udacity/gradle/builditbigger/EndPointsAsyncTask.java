@@ -29,7 +29,7 @@ public abstract class  EndPointsAsyncTask extends AsyncTask<Context,Void,String>
         if (myApiService == null){
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(),null)
-                    .setRootUrl("http://192.168.1.77:8080/_ah/api/")
+                    .setRootUrl(context.getString(R.string.GAE_root_url))
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
